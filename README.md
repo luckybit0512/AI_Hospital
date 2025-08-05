@@ -8,6 +8,8 @@ Welcome to the repository for our research paper, "AI Hospital: Interactive Eval
 To set up your environment, run the following command:
 ```
 pip install -r requirements.txt
+pip install -r reuqirement.txt
+pip install -r reuqirement.txt
 ```
 
 ## Multi-View Medical Evaluation (MVME) Benchmark
