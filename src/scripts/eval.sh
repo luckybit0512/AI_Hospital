@@ -22,16 +22,17 @@ mkdir -p "$OUTPUT_DIR"
 # === Functions ===
 run_evaluation() {
   echo "Running evaluation for model: $MODEL_NAME"
-  pushd "$EVAL_DIR" > /dev/null
-  python eval.py \
-    --model_name "$MODEL_NAME" \
-    --openai_api_key "$OPENAI_API_KEY" \
-    --openai_api_base "$OPENAI_API_BASE" \
-    --evaluation_platform dialog \
-    --eval_save_filepath "$OUTPUT_FILE" \
-    --reference_diagnosis_filepath "$REFERENCE_FILE" \
-    --doctor_names "$DOCTOR_NAME"
-  popd > /dev/null
+  (
+    cd "$EVAL_DIR"
+    python eval.py \
+      --model_name "$MODEL_NAME" \
+      --openai_api_key "$OPENAI_API_KEY" \
+      --openai_api_base "$OPENAI_API_BASE" \
+      --evaluation_platform dialog \
+      --eval_save_filepath "$OUTPUT_FILE" \
+      --reference_diagnosis_filepath "$REFERENCE_FILE" \
+      --doctor_names "$DOCTOR_NAME"
+  )
 }
 
 show_evaluation_results() {
@@ -41,6 +42,6 @@ show_evaluation_results() {
     --onestep_evaluation_result_path "$RESULT_PATH"
 }
 
-# === Main Execution ===
+# === Main ===
 run_evaluation
 show_evaluation_results
